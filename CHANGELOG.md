@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0](https://github.com/LindemannRock/craft-release-please-test/compare/v1.1.0...v1.2.0) (2026-05-21)
+## [1.2.0](https://github.com/LindemannRock/craft-release-please-test/compare/v1.1.0...v1.2.0) - 2026-05-21
 
 
 ### Added
@@ -8,7 +8,7 @@
 * re-trigger release with fixed sed step ([f8cd5d9](https://github.com/LindemannRock/craft-release-please-test/commit/f8cd5d9ed790fd0198bd245e543799288d4e8b48))
 * trigger phase 2 release with hyphen date format ([7984940](https://github.com/LindemannRock/craft-release-please-test/commit/7984940e8fc2adb95b4dd603080d5db494d5529d))
 
-## [1.1.0](https://github.com/LindemannRock/craft-release-please-test/compare/v1.0.0...v1.1.0) (2026-05-21)
+## [1.1.0](https://github.com/LindemannRock/craft-release-please-test/compare/v1.0.0...v1.1.0) - 2026-05-21
 
 
 ### Added
