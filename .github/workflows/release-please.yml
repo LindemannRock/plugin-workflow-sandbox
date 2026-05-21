@@ -15,3 +15,19 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
+
+      - name: Reformat CHANGELOG headings for Craft Plugin Store
+        if: ${{ steps.release.outputs.pr }}
+        env:
+          PR_BRANCH: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$PR_BRANCH"
+          git checkout "$PR_BRANCH"
+          sed -i -E '/^## /s/ \(([0-9.-]+)\)$/ - \1/' CHANGELOG.md
+          if ! git diff --quiet CHANGELOG.md; then
+            git add CHANGELOG.md
+            git commit -m "chore: reformat CHANGELOG date for Craft Plugin Store"
+            git push origin "$PR_BRANCH"
+          fi
