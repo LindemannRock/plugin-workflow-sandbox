@@ -1,0 +1,5 @@
+# Exclude dev/build files from Packagist distribution
+
+# Release automation (CI-only)
+release-please-config.json export-ignore
+.release-please-manifest.json export-ignore

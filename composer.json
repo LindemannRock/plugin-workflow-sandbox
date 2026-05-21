@@ -1,0 +1,29 @@
+{
+    "name": "lindemannrock/craft-release-please-test",
+    "description": "Throwaway test plugin for verifying release-please configuration and Craft Plugin Store changelog format compliance.",
+    "type": "craft-plugin",
+    "license": "MIT",
+    "version": "1.0.0",
+    "support": {
+        "source": "https://github.com/LindemannRock/craft-release-please-test",
+        "issues": "https://github.com/LindemannRock/craft-release-please-test/issues"
+    },
+    "require": {
+        "php": "^8.2",
+        "craftcms/cms": "^5.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "lindemannrock\\releaseplease\\test\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Release-Please Test",
+        "handle": "release-please-test",
+        "developer": "LindemannRock",
+        "developerUrl": "https://lindemannrock.com",
+        "documentationUrl": "https://github.com/LindemannRock/craft-release-please-test",
+        "changelogUrl": "https://raw.githubusercontent.com/LindemannRock/craft-release-please-test/main/CHANGELOG.md",
+        "class": "lindemannrock\\releaseplease\\test\\Plugin"
+    }
+}
