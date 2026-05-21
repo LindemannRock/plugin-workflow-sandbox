@@ -16,6 +16,11 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
 
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.pr }}
+        with:
+          fetch-depth: 0
+
       - name: Reformat CHANGELOG headings for Craft Plugin Store
         if: ${{ steps.release.outputs.pr }}
         env:
