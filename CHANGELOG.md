@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.1](https://github.com/LindemannRock/craft-release-please-test/compare/v1.2.0...v1.2.1) (2026-05-22)
+
+
+### Fixed
+
+* trivial change to refresh release-please PR for [CRITICAL] test ([5c09372](https://github.com/LindemannRock/craft-release-please-test/commit/5c09372d13a219b4458934a3cf52a95a780d5a18))
+
+
+### Security
+
+* **greeter:** escape user input to prevent stored XSS in greeting output ([cf04217](https://github.com/LindemannRock/craft-release-please-test/commit/cf04217b06c2190303da1381950eaf0355370df1))
+
 ## [1.2.0](https://github.com/LindemannRock/craft-release-please-test/compare/v1.1.0...v1.2.0) - 2026-05-21
 
 
