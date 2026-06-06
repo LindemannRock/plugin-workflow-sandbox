@@ -6,6 +6,8 @@ Throwaway plugin for verifying:
 2. **Keepachangelog section names** (`Added` / `Fixed` / `Security` / `Changed` / `Reverted`)
 3. **CHANGELOG date format compliance** with the Craft Plugin Store (sed post-process step in the workflow rewrites `## [X.Y.Z](url) (YYYY-MM-DD)` → `## [X.Y.Z](url) - YYYY-MM-DD`)
 4. **SECURITY.md** + `.gitattributes` export-ignore patterns
+5. **Branch-specific release lines** for `main`, `craft-4`, `craft-6`,
+   `craft-6-alpha`, and `craft-6-beta`
 
 This plugin is not intended for distribution. Do not list on the Plugin Store.
 
@@ -24,6 +26,8 @@ git push -u origin main
 Then enable **Settings → Security → "Enable private vulnerability reporting"** on the GitHub repo so SECURITY.md links work.
 
 ## Testing recipe
+
+For branch release testing, start with [`BRANCH_RELEASE_TESTS.md`](BRANCH_RELEASE_TESTS.md).
 
 Push commits in this order to verify every section + version-bump behaviour:
 

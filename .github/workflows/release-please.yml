@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+      - craft-4
+      - craft-6
+      - craft-6-alpha
+      - craft-6-beta
 
 permissions:
   contents: write
@@ -15,6 +19,9 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v5
         id: release
+        with:
+          target-branch: ${{ github.ref_name }}
+          config-file: ${{ github.ref_name == 'craft-6-alpha' && 'release-please-config.alpha.json' || github.ref_name == 'craft-6-beta' && 'release-please-config.beta.json' || 'release-please-config.json' }}
 
       - uses: actions/checkout@v6
         if: ${{ steps.release.outputs.pr }}
