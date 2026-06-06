@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/LindemannRock/craft-release-please-test/compare/v5.0.1...v5.0.2) (2026-06-06)
+
+
+### Fixed
+
+* trigger manual main release test ([adda0d6](https://github.com/LindemannRock/craft-release-please-test/commit/adda0d6f674a42491764ddcc5544edc95973e417))
+
 ## [5.0.1](https://github.com/LindemannRock/craft-release-please-test/compare/v5.0.0...v5.0.1) - 2026-06-06
 
 
