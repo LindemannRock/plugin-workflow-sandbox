@@ -5,13 +5,15 @@ version lines.
 
 ## Branch Matrix
 
-`main` always represents the latest stable Craft major. Do not create a
-`craft-5` branch while Craft 5 is the latest stable line on `main`.
+`main` always represents the latest stable Craft major. Real plugin repositories
+should not create a `craft-5` branch while Craft 5 is the latest stable line on
+`main`; this test repository includes `craft-5` only to prove the future
+long-term maintenance flow before Craft 6 promotion.
 
 | Branch | Purpose | Expected version shape |
 | --- | --- | --- |
 | `main` | Latest stable line, currently Craft 5 | `5.x.y` |
-| `craft-4` | Older Craft 4 maintenance line | `4.x.y` |
+| `craft-5` | Future Craft 5 long-term maintenance line | `5.x.y` |
 | `craft-6` | Future Craft 6 stable line | `6.x.y` |
 | `craft-6-alpha` | Craft 6 alpha pre-release line | `6.0.0-alpha.n` |
 | `craft-6-beta` | Craft 6 beta pre-release line | `6.0.0-beta.n` |
@@ -20,7 +22,7 @@ version lines.
 
 The workflow must:
 
-- run on `main`, `craft-4`, `craft-6`, `craft-6-alpha`, and `craft-6-beta`;
+- run on `main`, `craft-5`, `craft-6`, `craft-6-alpha`, and `craft-6-beta`;
 - pass `target-branch: ${{ github.ref_name }}` to Release Please;
 - use the default config for stable branches;
 - use `release-please-config.alpha.json` for `craft-6-alpha`;
@@ -40,8 +42,8 @@ Suggested baselines:
 
 | Branch | Manifest/composer baseline |
 | --- | --- |
-| `main` | `5.0.0` |
-| `craft-4` | `4.0.0` |
+| `main` | `5.0.1` |
+| `craft-5` | `5.1.0` |
 | `craft-6` | `6.0.0` |
 | `craft-6-alpha` | `6.0.0-alpha.0` |
 | `craft-6-beta` | `6.0.0-beta.0` |
@@ -53,7 +55,7 @@ Use one conventional commit per branch:
 | Branch | Commit | Expected Release Please result |
 | --- | --- | --- |
 | `main` | `fix: exercise main release line` | Stable patch release on `main`. |
-| `craft-4` | `fix: exercise Craft 4 maintenance release line` | Stable patch release on `craft-4`. |
+| `craft-5` | `fix: exercise Craft 5 maintenance release line` | Stable patch release on `craft-5`. |
 | `craft-6` | `feat: exercise Craft 6 release line` | Stable minor release on `craft-6`. |
 | `craft-6-alpha` | `feat: exercise Craft 6 alpha release line` | `6.0.0-alpha.1`. |
 | `craft-6-beta` | `feat: exercise Craft 6 beta release line` | `6.0.0-beta.1`. |
@@ -75,7 +77,6 @@ Verified on GitHub Actions on 2026-06-06:
 | Branch | Release PR | Tag/release | GitHub Release state |
 | --- | --- | --- | --- |
 | `main` | `#5` | `v5.0.1` | Stable |
-| `craft-4` | `#6` | `v4.0.1` | Stable |
 | `craft-6` | `#7` | `v6.1.0` | Stable, latest |
 | `craft-6-alpha` | `#8` | `v6.0.0-alpha.1` | Prerelease |
 | `craft-6-beta` | `#9` | `v6.0.0-beta.1` | Prerelease |
@@ -87,3 +88,6 @@ corrected the open PRs to `6.0.0-alpha.1` and `6.0.0-beta.1`.
 After merging all five Release Please PRs, the post-merge workflows succeeded
 and created the expected GitHub Releases. GitHub marked `v6.0.0-alpha.1` and
 `v6.0.0-beta.1` as pre-releases.
+
+The earlier `craft-4` test run was historical only. The LindemannRock plugin
+suite does not support Craft 4, so `craft-4` is not part of the current matrix.

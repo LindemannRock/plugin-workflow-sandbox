@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - craft-4
+      - craft-5
       - craft-6
       - craft-6-alpha
       - craft-6-beta
