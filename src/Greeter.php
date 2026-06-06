@@ -8,4 +8,9 @@ class Greeter
         $safe = htmlspecialchars($name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         return "<p>Hello, {$safe}!</p>";
     }
+
+    public function releaseLine(): string
+    {
+        return 'main';
+    }
 }
