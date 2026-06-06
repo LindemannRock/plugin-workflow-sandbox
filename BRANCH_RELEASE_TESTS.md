@@ -25,6 +25,8 @@ The workflow must:
 - use the default config for stable branches;
 - use `release-please-config.alpha.json` for `craft-6-alpha`;
 - use `release-please-config.beta.json` for `craft-6-beta`;
+- set both `prerelease: true` and `versioning: prerelease` in alpha/beta
+  configs;
 - keep changelog headings in Craft Plugin Store format:
   `## [X.Y.Z](url) - YYYY-MM-DD`.
 
@@ -53,8 +55,8 @@ Use one conventional commit per branch:
 | `main` | `fix: exercise main release line` | Stable patch release on `main`. |
 | `craft-4` | `fix: exercise Craft 4 maintenance release line` | Stable patch release on `craft-4`. |
 | `craft-6` | `feat: exercise Craft 6 release line` | Stable minor release on `craft-6`. |
-| `craft-6-alpha` | `feat: exercise Craft 6 alpha release line` | Alpha pre-release. |
-| `craft-6-beta` | `feat: exercise Craft 6 beta release line` | Beta pre-release. |
+| `craft-6-alpha` | `feat: exercise Craft 6 alpha release line` | `6.0.0-alpha.1`. |
+| `craft-6-beta` | `feat: exercise Craft 6 beta release line` | `6.0.0-beta.1`. |
 
 After each push, verify that Release Please opens a release PR against the same
 branch that received the commit.
@@ -65,3 +67,19 @@ After merging each release PR, verify:
 - GitHub marks alpha/beta releases as pre-releases;
 - `composer.json` and `.release-please-manifest.json` update together;
 - `CHANGELOG.md` has the expected section and heading format.
+
+## Remote Test Results
+
+Verified on GitHub Actions on 2026-06-06:
+
+| Branch | Release PR | Result |
+| --- | --- | --- |
+| `main` | `#5` | `5.0.1` |
+| `craft-4` | `#6` | `4.0.1` |
+| `craft-6` | `#7` | `6.1.0` |
+| `craft-6-alpha` | `#8` | `6.0.0-alpha.1` |
+| `craft-6-beta` | `#9` | `6.0.0-beta.1` |
+
+Initial alpha/beta test runs without `versioning: prerelease` produced
+`6.1.0-alpha.0` and `6.1.0-beta.0`. Adding the prerelease versioning strategy
+corrected the open PRs to `6.0.0-alpha.1` and `6.0.0-beta.1`.
