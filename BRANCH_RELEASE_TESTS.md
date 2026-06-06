@@ -32,6 +32,37 @@ The workflow must:
 - keep changelog headings in Craft Plugin Store format:
   `## [X.Y.Z](url) - YYYY-MM-DD`.
 
+## Branch Protection
+
+The test repo uses the `CI / static-analysis` repository ruleset for active
+release branches:
+
+```text
+refs/heads/main
+refs/heads/craft-5
+refs/heads/craft-6
+refs/heads/craft-6-alpha
+refs/heads/craft-6-beta
+```
+
+Rules:
+
+- block branch deletion;
+- block non-fast-forward updates;
+- require the `static-analysis` status check;
+- no bypass actors.
+
+Verified on 2026-06-06:
+
+| Test | Result |
+| --- | --- |
+| Direct push to protected `main` | Rejected with missing `static-analysis`. |
+| PR `#16` into `main` with passing `static-analysis` | Merge allowed. |
+| PR `#17` into `main` with failing `static-analysis` | Merge blocked by branch policy. |
+
+This confirms the required day-to-day flow: push work to a short-lived branch,
+open a PR into the target release branch, wait for `static-analysis`, then merge.
+
 ## Version Baselines
 
 Each branch must have its own `.release-please-manifest.json` and
