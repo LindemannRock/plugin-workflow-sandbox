@@ -93,3 +93,13 @@ and created the expected GitHub Releases. GitHub marked `v6.0.0-alpha.1` and
 The earlier `craft-4` test run was historical only and has been replaced by
 `craft-5` in the active matrix. The LindemannRock plugin suite does not support
 Craft 4.
+
+The `craft-5` maintenance release was initially marked as GitHub's Latest
+release because it was published after `v6.1.0`. This was corrected manually:
+
+```bash
+gh release edit v6.1.0 --latest
+```
+
+After the correction, `v6.1.0` is Latest and `v5.1.1` remains a normal stable
+maintenance release.
