@@ -2,6 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "prerelease": true,
   "prerelease-type": "beta",
+  "versioning": "prerelease",
   "packages": {
     ".": {
       "release-type": "php",
