@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/LindemannRock/craft-release-please-test/compare/v6.0.0...v6.1.0) - 2026-06-06
+
+
+### Added
+
+* exercise Craft 6 release line ([f085494](https://github.com/LindemannRock/craft-release-please-test/commit/f08549410084ebfa8bf4571fbc83524a9a0d07e1))
+
 ## [1.2.1](https://github.com/LindemannRock/craft-release-please-test/compare/v1.2.0...v1.2.1) - 2026-05-22
 
 
