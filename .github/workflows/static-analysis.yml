@@ -1,0 +1,29 @@
+name: static-analysis
+
+on:
+  pull_request:
+    branches:
+      - main
+      - craft-5
+      - craft-6
+      - craft-6-alpha
+      - craft-6-beta
+  push:
+    branches:
+      - main
+      - craft-5
+      - craft-6
+      - craft-6-alpha
+      - craft-6-beta
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate Composer metadata
+        run: composer validate --strict --no-check-publish
+
+      - name: Lint PHP files
+        run: find src -name '*.php' -print0 | xargs -0 -n1 php -l
