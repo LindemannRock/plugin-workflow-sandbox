@@ -77,6 +77,7 @@ Verified on GitHub Actions on 2026-06-06:
 | Branch | Release PR | Tag/release | GitHub Release state |
 | --- | --- | --- | --- |
 | `main` | `#5` | `v5.0.1` | Stable |
+| `craft-5` | `#10` | `v5.1.1` | Stable |
 | `craft-6` | `#7` | `v6.1.0` | Stable, latest |
 | `craft-6-alpha` | `#8` | `v6.0.0-alpha.1` | Prerelease |
 | `craft-6-beta` | `#9` | `v6.0.0-beta.1` | Prerelease |
@@ -89,5 +90,6 @@ After merging all five Release Please PRs, the post-merge workflows succeeded
 and created the expected GitHub Releases. GitHub marked `v6.0.0-alpha.1` and
 `v6.0.0-beta.1` as pre-releases.
 
-The earlier `craft-4` test run was historical only. The LindemannRock plugin
-suite does not support Craft 4, so `craft-4` is not part of the current matrix.
+The earlier `craft-4` test run was historical only and has been replaced by
+`craft-5` in the active matrix. The LindemannRock plugin suite does not support
+Craft 4.
