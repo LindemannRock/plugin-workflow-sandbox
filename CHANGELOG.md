@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/LindemannRock/craft-release-please-test/compare/v5.1.0...v5.1.1) (2026-06-06)
+
+
+### Fixed
+
+* exercise Craft 5 maintenance release line ([ee4deb9](https://github.com/LindemannRock/craft-release-please-test/commit/ee4deb9c8509aebf412210433a152599fcc08bec))
+
 ## [5.0.1](https://github.com/LindemannRock/craft-release-please-test/compare/v5.0.0...v5.0.1) - 2026-06-06
 
 
