@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.1.1](https://github.com/LindemannRock/craft-release-please-test/compare/v6.1.0...v6.1.1) (2026-06-06)
+## [6.1.1](https://github.com/LindemannRock/craft-release-please-test/compare/v6.1.0...v6.1.1) - 2026-06-06
 
 
 ### Fixed
