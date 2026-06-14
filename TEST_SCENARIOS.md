@@ -740,6 +740,116 @@ git add .github/ISSUE_TEMPLATE
 
 **Iteration note**: Gate 4 STEP 2 should add: "Multiple files in the same directory serving the same purpose are NOT a split signal — they're a single coherent change (e.g., issue templates, translation files for one feature, all CSS rules for one component)."
 
+### E16 — Multi-locale translation corrections should NOT split by locale
+
+Real-world failure observed (twice, June 2026): staging corrections across several locale files produced a per-locale split — despite Gate 4 STEP 2 explicitly stating 12 translation files = 1 domain = 1 commit:
+
+```
+Split into separate commits: (1) feat(i18n): correct French translations for import/export permissions and messages, (2) feat(i18n): update Italian translations for column mapping, (3) feat(i18n): refine Japanese translation for CSV delimiter, (4) fix(i18n): improve Dutch translations for log clearing and column mapping, (5) fix(i18n): enhance Norwegian translations for log messages, (6) fix(i18n): adjust Portuguese translations for import history, (7) fix(i18n): clarify Swedish translation for pipe character
+```
+
+```
+Split into separate commits: (1) fix(i18n): correct Arabic translation for date range, (2) fix(i18n): correct Danish SMS log translations, (3) fix(i18n): correct German SMS part terminology, (4) fix(i18n): correct Spanish provider activation message, (5) fix(i18n): correct French analytics provider activation message, (6) fix(i18n): correct Italian log deletion messages, (7) fix(i18n): correct Portuguese provider and sender ID messages, (8) fix(i18n): correct Swedish SMS sending statistics description
+```
+
+Four distinct problems:
+
+1. **Per-locale split**: one domain (translation) must be ONE commit, regardless of how many locales or feature areas the strings touch.
+2. **Type-mixing as a split trigger**: the first output mixes `feat(i18n)` and `fix(i18n)` items — likely why Copilot split. The rule is: corrections only → `fix`; any new keys mixed in → single `feat` (most impactful wins). Never split by type.
+3. **Misclassified corrections**: items 1-3 of the first output are corrections to existing strings typed as `feat` — Gate 2 says corrections = `fix`.
+4. **Banned verbs inside split items**: "update", "improve", "enhance", "refine", "adjust" — the PRE-FLIGHT CHECK wasn't applied to wrapper items.
+
+**Setup** (corrections to existing strings in 3+ locale files):
+
+```bash
+# Assumes src/translations/{fr,it,ja}/<handle>.php exist with a 'Pipe' key
+sed -i '' "s/'Pipe' => '.*'/'Pipe' => 'Barre verticale'/" src/translations/fr/*.php
+sed -i '' "s/'Pipe' => '.*'/'Pipe' => 'Barra verticale'/" src/translations/it/*.php
+sed -i '' "s/'Pipe' => '.*'/'Pipe' => 'パイプ'/" src/translations/ja/*.php
+git add src/translations
+```
+
+**Expected** — single commit, NOT split, locale detail in body:
+
+```
+fix(i18n): correct translations across 3 locales
+
+- correct French translation for pipe character
+- correct Italian translation for pipe character
+- correct Japanese translation for pipe character
+```
+
+**Critical**:
+- SINGLE commit — never the `Split into separate commits:` wrapper for a translation-only staging
+- Type `fix` (corrections to existing strings); if the staging also added new keys → `feat` for the whole commit
+- No banned verbs anywhere, including inside any wrapper items
+- Body bullets carry per-locale detail (body is git-history-only; the changelog shows the subject)
+
+**Failure modes**:
+- ❌ `Split into separate commits: (1) fix(i18n): correct French..., (2) fix(i18n): correct Italian..., ...` — per-locale split (Gate 2/Gate 4 over-fire)
+- ❌ Mixed `feat(i18n)` + `fix(i18n)` items for the same staging — type-mixing used as a split signal
+- ❌ `feat(i18n)` for pure corrections — Gate 2 type leak
+- ❌ "update/improve/enhance/refine/adjust" in any subject or split item — banned verbs
+
+**Cleanup**: `git restore --staged src/translations && git restore src/translations`
+
+**Iteration note**: addressed in v3.1 instructions (2026-06-12) — Gate 2 "translation staging is ALWAYS ONE commit" rule with this exact wrong/right pair, Gate 4 STEP 1.5 cohesion check, PRE-FLIGHT check 5 (gates apply to split items), and "refine"/"adjust" added to banned verbs. Re-run this scenario to verify compliance.
+
+### E17 — A whole docs folder should NOT split by page or asset type
+
+Real-world failure observed (June 2026): staging a complete docs folder for a plugin produced a per-page + per-asset split — despite Gate 3 (all-docs → `docs:`) and Gate 4 STEP 2 (one domain → one commit):
+
+```
+Split into separate commits: (1) docs: add installation guide for SMS Manager, (2) docs: add quickstart guide for SMS Manager, (3) docs: add requirements documentation for SMS Manager, (4) docs: add translations documentation for SMS Manager, (5) docs: add troubleshooting guide for SMS Manager, (6) docs: add index.json and plugin.json for SMS Manager, (7) docs: add images for SMS Manager documentation
+```
+
+Three distinct problems:
+
+1. **Per-page split**: items 1-5 are all `.md` files under `docs/**` — one domain, must be ONE commit. Distinct doc pages are NOT a split signal (same class as E15's same-purpose rule).
+2. **Asset types counted as separate domains**: items 6 (`index.json`/`plugin.json` docs-manager metadata) and 7 (images) were peeled off because the original "prose" domain was defined as `.md/.mdx/.txt` only — json and images under `docs/**` fell outside it. Everything under `docs/**` is the docs domain, regardless of extension.
+3. **Plugin name repeated in every subject**: "for SMS Manager" is redundant — single-plugin repo, the repo IS the plugin (same reason the plugin name is banned as a scope).
+
+**Setup** (a new docs folder with guides, metadata, and an image):
+
+```bash
+mkdir -p docs/get-started docs/resources docs/images
+echo "# Installation" > docs/get-started/installation.md
+echo "# Quickstart" > docs/get-started/quickstart.md
+echo "# Requirements" > docs/get-started/requirements.md
+echo "# Translations" > docs/resources/translations.md
+echo "# Troubleshooting" > docs/resources/troubleshooting.md
+echo '{"title":"Docs"}' > docs/index.json
+echo '{"handle":"sms-manager"}' > docs/plugin.json
+printf 'PNG' > docs/images/overview.png
+git add docs
+```
+
+**Expected** — single commit, NOT split, per-page detail in body:
+
+```
+docs: add plugin documentation
+
+- add installation, quickstart, and requirements guides
+- add translations and troubleshooting pages
+- add docs-manager index.json and plugin.json
+- add overview image
+```
+
+**Critical**:
+- SINGLE commit — never the `Split into separate commits:` wrapper for a docs-only staging
+- Type `docs:` (everything under `docs/**`, including json metadata and images)
+- No plugin name in the subject ("for SMS Manager" is redundant)
+- Body bullets carry per-page detail
+
+**Failure modes**:
+- ❌ `Split into separate commits: (1) docs: add installation guide, (2) docs: add quickstart guide, ...` — per-page split (Gate 3/Gate 4 over-fire)
+- ❌ Peeling `index.json`/`plugin.json` or images into their own commits — docs assets are the docs domain
+- ❌ "for SMS Manager" / plugin name repeated in subjects
+
+**Cleanup**: `git restore --staged docs && rm -rf docs`
+
+**Iteration note**: addressed in v3.1 instructions (2026-06-12) — Gate 3 broadened to "anything under docs/** is the docs domain regardless of extension" + "docs-only staging is ALWAYS ONE commit" rule with this exact wrong/right pair, Gate 4 STEP 1 prose/docs domain extended to docs-folder assets, and a docs-folder example added to the DOMAIN COUNT == 1 list. Re-run to verify compliance.
+
 ---
 
 ## Reporting results

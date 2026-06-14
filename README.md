@@ -10,6 +10,7 @@ Throwaway plugin for verifying:
    `craft-6-alpha`, and `craft-6-beta`
 6. **Craft compatibility floor validation** using a disposable Craft install
    created by `scripts/test-craft-compat`
+7. **Plugin smoke-test validation** through `scripts/smoke-test`
 
 This plugin is not intended for distribution. Do not list on the Plugin Store.
 
@@ -44,7 +45,9 @@ scripts/test-craft-compat '5.10.0' dev-main --allow-insecure-floor
 Use the exact-version form only to probe a historical floor. Normal release
 checks should use the latest secure patch in the supported Craft minor. The
 script pins Composer's platform PHP to the selected DDEV PHP version so the
-dependency set matches the runtime.
+dependency set matches the runtime. In `--install` mode, the script runs
+`scripts/smoke-test` from the mirrored plugin package after Craft installs and
+the plugin is enabled.
 
 Push commits in this order to verify every section + version-bump behaviour:
 
