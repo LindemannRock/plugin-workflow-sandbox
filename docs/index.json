@@ -1,0 +1,7 @@
+{
+    "plugin": {
+        "name": "Release-Please Test",
+        "handle": "release-please-test",
+        "description": "Test plugin for versioned docs — Craft 6 docs (alpha)."
+    }
+}
