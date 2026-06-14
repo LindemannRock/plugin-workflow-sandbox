@@ -4,13 +4,14 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  scripts/test-craft-compat <craft-constraint> [plugin-version] [--install] [--php-version <version>] [--allow-insecure-floor]
+  scripts/test-craft-compat <craft-constraint> [plugin-version] [--install] [--php-version <version>] [--smoke-command <command>] [--skip-smoke] [--allow-insecure-floor]
 
 Examples:
   scripts/test-craft-compat '^5.10'
   scripts/test-craft-compat '^5.10' dev-main
   scripts/test-craft-compat '^5.10' dev-main --install
   scripts/test-craft-compat '^5.10' dev-main --install --php-version 8.3
+  scripts/test-craft-compat '^5.10' dev-main --install --smoke-command 'php craft plugin/list'
   scripts/test-craft-compat '5.10.0' dev-main --allow-insecure-floor
 
 What it does:
@@ -28,6 +29,10 @@ resolution matches the DDEV runtime. The default PHP version is 8.3.
 Use --allow-insecure-floor only for historical floor checks where Composer
 blocks an older Craft/dependency patch release because of security advisories.
 Normal release checks should use the latest patch in the supported minor.
+
+When --install is used, the script runs vendor/<package>/scripts/smoke-test if
+it exists. Use --smoke-command for one-off checks, or --skip-smoke to validate
+only install/enabled state.
 USAGE
 }
 
@@ -41,6 +46,8 @@ PLUGIN_VERSION="dev-main"
 INSTALL_MODE=false
 ALLOW_INSECURE_FLOOR=false
 PHP_VERSION="8.3"
+SMOKE_COMMAND=""
+SKIP_SMOKE=false
 
 shift
 
@@ -59,6 +66,17 @@ while [[ $# -gt 0 ]]; do
       fi
       PHP_VERSION="$2"
       shift
+      ;;
+    --smoke-command)
+      if [[ -z "${2:-}" ]]; then
+        echo "--smoke-command requires a command string" >&2
+        exit 1
+      fi
+      SMOKE_COMMAND="$2"
+      shift
+      ;;
+    --skip-smoke)
+      SKIP_SMOKE=true
       ;;
     --help|-h)
       usage
@@ -79,8 +97,13 @@ done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-PLUGIN_NAME="lindemannrock/craft-release-please-test"
-PLUGIN_HANDLE="release-please-test"
+PLUGIN_NAME="$(php -r '$data = json_decode(file_get_contents($argv[1]), true); echo $data["name"] ?? "";' "$PLUGIN_DIR/composer.json")"
+PLUGIN_HANDLE="$(php -r '$data = json_decode(file_get_contents($argv[1]), true); echo $data["extra"]["handle"] ?? "";' "$PLUGIN_DIR/composer.json")"
+
+if [[ -z "$PLUGIN_NAME" || -z "$PLUGIN_HANDLE" ]]; then
+  echo "Unable to read plugin name and extra.handle from composer.json." >&2
+  exit 1
+fi
 
 STAMP="$(date +%Y%m%d%H%M%S)"
 SAFE_CONSTRAINT="$(printf '%s' "$CRAFT_CONSTRAINT" | tr -c '[:alnum:]' '-')"
@@ -144,6 +167,22 @@ echo "$PLUGIN_LIST"
 if ! grep -Eq "[[:space:]]$PLUGIN_HANDLE[[:space:]].*[[:space:]]Yes[[:space:]]+Yes" <<<"$PLUGIN_LIST"; then
   echo "Plugin $PLUGIN_HANDLE was not installed and enabled successfully." >&2
   exit 1
+fi
+
+if [[ "$SKIP_SMOKE" == true ]]; then
+  echo "Smoke test skipped."
+elif [[ -n "$SMOKE_COMMAND" ]]; then
+  echo "Running custom smoke command"
+  ddev exec bash -lc "$SMOKE_COMMAND"
+else
+  SMOKE_SCRIPT="vendor/$PLUGIN_NAME/scripts/smoke-test"
+
+  if ddev exec test -f "$SMOKE_SCRIPT" >/dev/null 2>&1; then
+    echo "Running plugin smoke test: $SMOKE_SCRIPT"
+    ddev exec bash "$SMOKE_SCRIPT"
+  else
+    echo "No plugin smoke test found at $SMOKE_SCRIPT; install/enabled state only."
+  fi
 fi
 
 echo "Fresh-install compatibility check passed."

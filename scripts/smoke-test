@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PLUGIN_HANDLE="release-please-test"
+
+PLUGIN_LIST="$(php craft plugin/list)"
+echo "$PLUGIN_LIST"
+
+if ! grep -Eq "[[:space:]]$PLUGIN_HANDLE[[:space:]].*[[:space:]]Yes[[:space:]]+Yes" <<<"$PLUGIN_LIST"; then
+  echo "Plugin $PLUGIN_HANDLE is not installed and enabled." >&2
+  exit 1
+fi
+
+php -r '
+require "vendor/autoload.php";
+
+$greeter = new \lindemannrock\releaseplease\test\Greeter();
+$result = $greeter->greet("Smoke");
+
+if ($result !== "<p>Hello, Smoke!</p>") {
+    fwrite(STDERR, "Unexpected Greeter result: {$result}\n");
+    exit(1);
+}
+
+echo "Greeter smoke check passed.\n";
+'
+
+echo "Plugin smoke test passed."
