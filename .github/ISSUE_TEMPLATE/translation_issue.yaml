@@ -102,14 +102,14 @@ body:
     id: craft-version
     attributes:
       label: Craft CMS exact version
-      description: "**Do not write \"latest\"** — run `php craft version` to check."
+      description: "**Do not write \"latest\"** — check Craft's System Report."
       placeholder: e.g. 5.6.1
 
   - type: input
     id: plugin-version
     attributes:
       label: "Release-Please Test version"
-      description: "**Do not write \"latest\"** — check in Settings → Plugins."
+      description: "**Do not write \"latest\"** — check Craft's System Report or Settings → Plugins."
       placeholder: e.g. 5.2.0
     validations:
       required: true
