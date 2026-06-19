@@ -98,20 +98,18 @@ body:
       label: Additional context
       description: Screenshots (especially helpful for layout/RTL issues), surrounding UI text, or anything else that helps locate the string.
 
-  - type: dropdown
-    id: craft-major
+  - type: input
+    id: craft-version
     attributes:
-      label: Craft CMS major version
-      options:
-        - "Craft 5"
-    validations:
-      required: true
+      label: Craft CMS exact version
+      description: "**Do not write \"latest\"** — run `php craft version` to check."
+      placeholder: e.g. 5.6.1
 
   - type: input
     id: plugin-version
     attributes:
       label: "Release-Please Test version"
-      description: Check in Settings → Plugins.
+      description: "**Do not write \"latest\"** — check in Settings → Plugins."
     validations:
       required: true
 
