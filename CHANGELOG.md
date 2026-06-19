@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.0.0-beta.3](https://github.com/LindemannRock/craft-release-please-test/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2026-06-19)
+## [6.0.0-beta.3](https://github.com/LindemannRock/craft-release-please-test/compare/v6.0.0-beta.2...v6.0.0-beta.3) - 2026-06-19
 
 
 ### Fixed
