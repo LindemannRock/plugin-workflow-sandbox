@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/LindemannRock/craft-release-please-test/compare/v5.0.2...v5.1.0) - 2026-06-19
+
+
+### Added
+
+* **smoke-test:** add smoke test script for plugin validation ([3611e16](https://github.com/LindemannRock/craft-release-please-test/commit/3611e16612bac918fafd1a64792e4b665937145e))
+
+
+### Fixed
+
+* trigger release flow after CI config fix ([2903d85](https://github.com/LindemannRock/craft-release-please-test/commit/2903d855f269eb8110e3305ae086adaab797f8e9))
+
 ## [5.0.2](https://github.com/LindemannRock/craft-release-please-test/compare/v5.0.1...v5.0.2) - 2026-06-06
 
 
