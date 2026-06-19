@@ -31,29 +31,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: setup-context
-    attributes:
-      label: Setup context
-      description: Tell us about your setup so we can reproduce the issue.
-      value: |
-        - Craft CMS version:
-        - PHP version:
-        - Database:
-        - Other relevant plugins:
-        - Local, staging, or production:
-    validations:
-      required: true
-
-  - type: dropdown
-    id: craft-major
-    attributes:
-      label: Craft CMS major version
-      options:
-        - "Craft 5"
-    validations:
-      required: true
-
   - type: input
     id: craft-version
     attributes:
@@ -71,6 +48,12 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version
+      description: "Run `php -v` to check."
+
   - type: dropdown
     id: release-line
     attributes:
@@ -85,15 +68,13 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: php-version
-    attributes:
-      label: PHP version
-      description: "Run `php -v` to check."
-
   - type: textarea
     id: additional-context
     attributes:
       label: Additional context
-      description: Anything else that might help — screenshots, log entries, other plugins installed.
-      placeholder: I also have X plugin installed... or This only happens on production...
+      description: Add anything else that may help us reproduce the issue.
+      value: |
+        - Database:
+        - Other relevant plugins:
+        - Local, staging, or production:
+        - Screenshots or log entries:
