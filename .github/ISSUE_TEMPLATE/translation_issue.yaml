@@ -112,17 +112,3 @@ body:
       description: "**Do not write \"latest\"** — check in Settings → Plugins."
     validations:
       required: true
-
-  - type: dropdown
-    id: release-line
-    attributes:
-      label: Affected release line
-      description: Pick the closest matching release line. Maintainers may adjust this during triage.
-      options:
-        - Current stable / main
-        - Craft 6
-        - Craft 6 beta
-        - Craft 6 alpha
-        - Unsure
-    validations:
-      required: true

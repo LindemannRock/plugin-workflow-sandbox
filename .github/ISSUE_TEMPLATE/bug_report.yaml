@@ -54,20 +54,6 @@ body:
       label: PHP version
       description: "Run `php -v` to check."
 
-  - type: dropdown
-    id: release-line
-    attributes:
-      label: Affected release line
-      description: Pick the closest matching release line. Maintainers may adjust this during triage.
-      options:
-        - Current stable / main
-        - Craft 6
-        - Craft 6 beta
-        - Craft 6 alpha
-        - Unsure
-    validations:
-      required: true
-
   - type: textarea
     id: additional-context
     attributes:
