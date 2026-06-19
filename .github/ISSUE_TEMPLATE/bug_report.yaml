@@ -64,5 +64,5 @@ body:
       value: |
         - Database:
         - Other relevant plugins:
-        - Local, staging, or production:
-        - Screenshots or log entries:
+        - Environment: local, staging, or production
+        - Screenshots, screen recordings, or log entries:
