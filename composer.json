@@ -17,6 +17,12 @@
             "lindemannrock\\releaseplease\\test\\": "src/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "craftcms/plugin-installer": true,
+            "yiisoft/yii2-composer": true
+        }
+    },
     "extra": {
         "name": "Release-Please Test",
         "handle": "release-please-test",
