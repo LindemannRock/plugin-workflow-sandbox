@@ -45,6 +45,7 @@ body:
     attributes:
       label: Release-Please Test version
       description: "**Do not write \"latest\"** — check in Settings → Plugins."
+      placeholder: e.g. 5.2.0
     validations:
       required: true
 
@@ -53,6 +54,7 @@ body:
     attributes:
       label: PHP version
       description: "Run `php -v` to check."
+      placeholder: e.g. 8.3.30
 
   - type: textarea
     id: additional-context

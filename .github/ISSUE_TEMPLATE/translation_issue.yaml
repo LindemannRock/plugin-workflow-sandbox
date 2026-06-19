@@ -110,5 +110,6 @@ body:
     attributes:
       label: "Release-Please Test version"
       description: "**Do not write \"latest\"** — check in Settings → Plugins."
+      placeholder: e.g. 5.2.0
     validations:
       required: true
