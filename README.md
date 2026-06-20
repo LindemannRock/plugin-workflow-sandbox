@@ -6,7 +6,7 @@ Throwaway plugin for verifying:
 2. **Keepachangelog section names** (`Added` / `Fixed` / `Security` / `Changed` / `Reverted`)
 3. **CHANGELOG date format compliance** with the Craft Plugin Store (sed post-process step in the workflow rewrites `## [X.Y.Z](url) (YYYY-MM-DD)` → `## [X.Y.Z](url) - YYYY-MM-DD`)
 4. **SECURITY.md** + `.gitattributes` export-ignore patterns
-5. **Branch-specific release lines** for `main`, `craft-4`, `craft-6`,
+5. **Branch-specific release lines** for `main`, `craft-5`, `craft-6`,
    `craft-6-alpha`, and `craft-6-beta`
 6. **Craft compatibility floor validation** using a disposable Craft install
    created by `scripts/test-craft-compat`
@@ -22,7 +22,7 @@ git init
 git add .
 git commit -m "chore: initial test plugin scaffold"
 git branch -M main
-git remote add origin https://github.com/LindemannRock/craft-release-please-test.git
+git remote add origin https://github.com/LindemannRock/craft-plugin-workflow-sandbox.git
 git push -u origin main
 ```
 

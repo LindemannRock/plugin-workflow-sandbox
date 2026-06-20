@@ -6,7 +6,7 @@ If you discover a security vulnerability in Release-Please Test, please report i
 
 ### Preferred: GitHub private advisory
 
-[Open a private security advisory](https://github.com/LindemannRock/craft-release-please-test/security/advisories/new). This routes the report directly to maintainers with no public visibility.
+[Open a private security advisory](https://github.com/LindemannRock/craft-plugin-workflow-sandbox/security/advisories/new). This routes the report directly to maintainers with no public visibility.
 
 ### Email fallback
 
