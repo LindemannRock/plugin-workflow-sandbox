@@ -3,7 +3,7 @@
     "description": "Throwaway test plugin for verifying release-please configuration and Craft Plugin Store changelog format compliance.",
     "type": "craft-plugin",
     "license": "MIT",
-    "version": "5.1.0",
+    "version": "5.2.0",
     "support": {
         "source": "https://github.com/LindemannRock/craft-release-please-test",
         "issues": "https://github.com/LindemannRock/craft-release-please-test/issues"
