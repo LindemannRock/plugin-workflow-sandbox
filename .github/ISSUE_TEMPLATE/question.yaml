@@ -7,8 +7,8 @@ body:
       value: |
         Before asking, please check:
 
-          - I've searched the [documentation](https://github.com/LindemannRock/craft-release-please-test/tree/main/docs).
-          - I've searched [open and closed issues](https://github.com/LindemannRock/craft-release-please-test/issues?q=is%3Aissue).
+          - I've searched the [documentation](https://github.com/LindemannRock/craft-plugin-workflow-sandbox/tree/main/docs).
+          - I've searched [open and closed issues](https://github.com/LindemannRock/craft-plugin-workflow-sandbox/issues?q=is%3Aissue).
           - This is not a bug report — just a general question.
 
   - type: textarea
