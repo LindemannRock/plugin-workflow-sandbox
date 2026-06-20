@@ -4,6 +4,6 @@
 
 ![Placeholder image — Main / default docs](images/placeholder.webp)
 
-Install with Composer: composer require lindemannrock/craft-release-please-test
+Install with Composer: composer require lindemannrock/craft-plugin-workflow-sandbox
 
 Then enable the plugin in the Control Panel under Settings, Plugins.

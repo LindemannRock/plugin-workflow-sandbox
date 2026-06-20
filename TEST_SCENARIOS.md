@@ -14,7 +14,7 @@ For each scenario:
 
 If any scenario produces a message that doesn't match the expected pattern, flag it and we'll iterate on the instructions.
 
-Throughout this doc, `RPT` = `/Users/halin/Drive/Projects/dev/craftcms/plugins/plugins/release-please-test`.
+Throughout this doc, `RPT` = `/Users/halin/Drive/Projects/dev/craftcms/plugins/plugins/plugin-workflow-sandbox`.
 
 ---
 
@@ -25,7 +25,7 @@ Throughout this doc, `RPT` = `/Users/halin/Drive/Projects/dev/craftcms/plugins/p
 ```bash
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -66,7 +66,7 @@ git restore --staged src/Greeter.php && rm src/Greeter.php
 ```bash
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -81,7 +81,7 @@ git add src/Greeter.php && git commit -m "chore: scaffold Greeter for test" --qu
 # Now apply the fix
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -119,7 +119,7 @@ rm -f src/Greeter.php
 ```bash
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -134,7 +134,7 @@ git add src/Greeter.php && git commit -m "chore: scaffold vulnerable Greeter for
 # Add HTML escaping
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -174,7 +174,7 @@ rm -f src/Greeter.php
 ```bash
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -190,7 +190,7 @@ git add src/Greeter.php && git commit -m "chore: scaffold lookup for perf test" 
 # Add static cache
 cat > src/Greeter.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {
@@ -264,7 +264,7 @@ git reset --hard HEAD~1
 echo "" >> README.md
 echo "## Quick start" >> README.md
 echo "" >> README.md
-echo "Run \`composer require lindemannrock/craft-release-please-test\` to install." >> README.md
+echo "Run \`composer require lindemannrock/craft-plugin-workflow-sandbox\` to install." >> README.md
 ```
 
 **Stage**
@@ -324,7 +324,7 @@ git restore README.md
 
 ```bash
 mkdir -p src/translations/es
-cat > src/translations/es/release-please-test.php <<'PHP'
+cat > src/translations/es/plugin-workflow-sandbox.php <<'PHP'
 <?php
 return [
     'Hello, {name}!' => '¡Hola, {name}!',
@@ -337,7 +337,7 @@ PHP
 **Stage**
 
 ```bash
-git add src/translations/es/release-please-test.php
+git add src/translations/es/plugin-workflow-sandbox.php
 ```
 
 **Expected**: `feat(i18n): add Spanish translations for greeting and form actions` (or similar with **scope MUST be `i18n`**)
@@ -345,13 +345,13 @@ git add src/translations/es/release-please-test.php
 **Critical check**:
 
 - Type: `feat:` (new locale)
-- Scope: `i18n` — NOT `translations`, NOT `es`, NOT `release-please-test`
+- Scope: `i18n` — NOT `translations`, NOT `es`, NOT `plugin-workflow-sandbox`
 - NOT `docs:` — translations are user-facing strings
 
 **Cleanup**
 
 ```bash
-git restore --staged src/translations/es/release-please-test.php
+git restore --staged src/translations/es/plugin-workflow-sandbox.php
 rm -rf src/translations
 ```
 
@@ -432,7 +432,7 @@ echo "" >> README.md && echo "## Note" >> README.md && echo "Updated docs." >> R
 
 cat > src/Helper.php <<'PHP'
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 class Helper { public static function foo(): string { return 'bar'; } }
 PHP
 
@@ -505,7 +505,7 @@ Realistic case: dev adds a feature with translatable strings, updates all 12 lan
 ```bash
 for lang in en de fr nl es ar it pt ja sv da no; do
   mkdir -p src/translations/$lang
-  cat > src/translations/$lang/release-please-test.php <<PHP
+  cat > src/translations/$lang/plugin-workflow-sandbox.php <<PHP
 <?php
 return ['Hello' => 'Hello'];
 PHP

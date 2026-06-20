@@ -1,5 +1,5 @@
 {
-    "name": "lindemannrock/craft-release-please-test",
+    "name": "lindemannrock/craft-plugin-workflow-sandbox",
     "description": "Throwaway test plugin for verifying release-please configuration and Craft Plugin Store changelog format compliance.",
     "type": "craft-plugin",
     "license": "MIT",
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "lindemannrock\\releaseplease\\test\\": "src/"
+            "lindemannrock\\pluginworkflowsandbox\\": "src/"
         }
     },
     "config": {
@@ -24,12 +24,12 @@
         }
     },
     "extra": {
-        "name": "Release-Please Test",
-        "handle": "release-please-test",
+        "name": "Plugin Workflow Sandbox",
+        "handle": "plugin-workflow-sandbox",
         "developer": "LindemannRock",
         "developerUrl": "https://lindemannrock.com",
         "documentationUrl": "https://github.com/LindemannRock/craft-plugin-workflow-sandbox",
         "changelogUrl": "https://raw.githubusercontent.com/LindemannRock/craft-plugin-workflow-sandbox/main/CHANGELOG.md",
-        "class": "lindemannrock\\releaseplease\\test\\Plugin"
+        "class": "lindemannrock\\pluginworkflowsandbox\\Plugin"
     }
 }

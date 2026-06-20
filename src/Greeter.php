@@ -1,5 +1,5 @@
 <?php
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 class Greeter
 {

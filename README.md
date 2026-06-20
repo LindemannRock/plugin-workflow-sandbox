@@ -1,4 +1,4 @@
-# Release-Please Test
+# Plugin Workflow Sandbox
 
 Throwaway plugin for verifying:
 
@@ -17,7 +17,7 @@ This plugin is not intended for distribution. Do not list on the Plugin Store.
 ## Setup
 
 ```bash
-cd plugins/release-please-test
+cd plugins/plugin-workflow-sandbox
 git init
 git add .
 git commit -m "chore: initial test plugin scaffold"
@@ -35,7 +35,7 @@ For branch release testing, start with [`BRANCH_RELEASE_TESTS.md`](BRANCH_RELEAS
 For Craft compatibility floor testing, start with:
 
 ```bash
-cd plugins/release-please-test
+cd plugins/plugin-workflow-sandbox
 scripts/test-craft-compat '^5.10'
 scripts/test-craft-compat '^5.10' dev-main --install
 scripts/test-craft-compat '^5.10' dev-main --install --php-version 8.3

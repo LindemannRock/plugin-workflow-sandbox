@@ -1,7 +1,7 @@
 {
     "plugin": {
-        "name": "Release-Please Test",
-        "handle": "release-please-test",
+        "name": "Plugin Workflow Sandbox",
+        "handle": "plugin-workflow-sandbox",
         "description": "Test plugin for versioned docs — Main / default docs."
     }
 }

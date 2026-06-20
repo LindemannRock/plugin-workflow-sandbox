@@ -126,7 +126,7 @@ echo "Pinning craftcms/cms to $CRAFT_CONSTRAINT"
 composer require "craftcms/cms:$CRAFT_CONSTRAINT" --no-interaction --no-scripts --update-with-all-dependencies
 
 echo "Configuring local path repository for $PLUGIN_NAME"
-composer config --json repositories.release-please-test "{\"type\":\"path\",\"url\":\"$PLUGIN_DIR\",\"options\":{\"symlink\":false,\"versions\":{\"$PLUGIN_NAME\":\"$PLUGIN_VERSION\"}}}"
+composer config --json repositories.plugin-workflow-sandbox "{\"type\":\"path\",\"url\":\"$PLUGIN_DIR\",\"options\":{\"symlink\":false,\"versions\":{\"$PLUGIN_NAME\":\"$PLUGIN_VERSION\"}}}"
 composer config minimum-stability dev
 composer config prefer-stable true
 

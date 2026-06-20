@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PLUGIN_HANDLE="release-please-test"
+PLUGIN_HANDLE="plugin-workflow-sandbox"
 
 PLUGIN_LIST="$(php craft plugin/list)"
 echo "$PLUGIN_LIST"
@@ -14,7 +14,7 @@ fi
 php -r '
 require "vendor/autoload.php";
 
-$greeter = new \lindemannrock\releaseplease\test\Greeter();
+$greeter = new \lindemannrock\pluginworkflowsandbox\Greeter();
 $result = $greeter->greet("Smoke");
 
 if ($result !== "<p>Hello, Smoke!</p>") {

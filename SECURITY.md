@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Release-Please Test, please report it privately. **Do not open a public GitHub issue** — public disclosure before a fix is available puts other users at risk.
+If you discover a security vulnerability in Plugin Workflow Sandbox, please report it privately. **Do not open a public GitHub issue** — public disclosure before a fix is available puts other users at risk.
 
 ### Preferred: GitHub private advisory
 

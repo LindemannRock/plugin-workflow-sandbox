@@ -1,6 +1,6 @@
 {
-    "name": "Release-Please Test",
-    "handle": "release-please-test",
+    "name": "Plugin Workflow Sandbox",
+    "handle": "plugin-workflow-sandbox",
     "description": "Test plugin for versioned docs.",
     "version": "6.0.0",
     "developer": "LindemannRock",

@@ -1,6 +1,6 @@
 <?php
 /**
- * Release-Please Test plugin for Craft CMS 5.x
+ * Plugin Workflow Sandbox plugin for Craft CMS 5.x
  *
  * Throwaway plugin for verifying release-please configuration and
  * Craft Plugin Store changelog format compliance.
@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2026 LindemannRock
  */
 
-namespace lindemannrock\releaseplease\test;
+namespace lindemannrock\pluginworkflowsandbox;
 
 use craft\base\Plugin as BasePlugin;
 
